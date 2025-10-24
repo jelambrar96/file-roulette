@@ -168,6 +168,11 @@
             }
             output.scrollTop = output.scrollHeight;
         }
+        else {
+            nextBtn.disabled = true;
+            // Alert cuando ya no quedan filas
+            alert("Se han terminado las filas.");
+        }
     });
 
     // --- Resetear zona de salida ---
@@ -175,6 +180,8 @@
         output.textContent = "";
         index = 0;
         if (filas.length > 0) nextBtn.disabled = false;
+        // Alert después de presionar Reset
+        alert("Salida reiniciada.");
     });
 </script>
 </body>
