@@ -38,8 +38,10 @@ def main():
     filas = [ item for item in leer_archivo(args.file, args.remove_header) if item ]
 
     # Aplicar semilla si se indica
-    if args.seed is not None:
-        random.seed(args.seed)
+    seed = args.seed if args.seed is not None else random.randint(0, len(filas) - 1)
+    if args.seed is None:
+        print(f"Usando semilla aleatoria generada: {seed}")
+    random.seed(seed)
 
     # Mezclar la lista
     random.shuffle(filas)
