@@ -137,26 +137,27 @@
 
         const remove = removeHeader.checked;
 
-        // Determinar semilla: usar la ingresada o generar una aleatoria entre
-        // 0 y (cantidad de filas - 1) si el usuario no ingresó ninguna.
-        let seedVal;
-        if (seedInput.value) {
-            seedVal = parseInt(seedInput.value);
-        } else {
-            const max = Math.max(filas.length - 1, 0);
-            // Generador más seguro cuando está disponible
-            let randomSeed;
-            if (window.crypto && crypto.getRandomValues) {
-                const arr = new Uint32Array(1);
-                crypto.getRandomValues(arr);
-                randomSeed = arr[0] % (max + 1);
-            } else {
-                randomSeed = Math.floor(Math.random() * (max + 1));
-            }
-            seedVal = randomSeed;
-            // Colocar la semilla generada en la etiqueta/input para que el usuario la vea
-            seedInput.value = seedVal;
-        }
+        const seedVal = seedInput.value ? parseInt(seedInput.value) : null;
+        // // Determinar semilla: usar la ingresada o generar una aleatoria entre
+        // // 0 y (cantidad de filas - 1) si el usuario no ingresó ninguna.
+        // let seedVal;
+        // if (seedInput.value) {
+        //     seedVal = parseInt(seedInput.value);
+        // } else {
+        //     const max = Math.max(filas.length - 1, 0);
+        //     // Generador más seguro cuando está disponible
+        //     let randomSeed;
+        //     if (window.crypto && crypto.getRandomValues) {
+        //         const arr = new Uint32Array(1);
+        //         crypto.getRandomValues(arr);
+        //         randomSeed = arr[0] % (max + 1);
+        //     } else {
+        //         randomSeed = Math.floor(Math.random() * (max + 1));
+        //     }
+        //     seedVal = randomSeed;
+        //     // Colocar la semilla generada en la etiqueta/input para que el usuario la vea
+        //     seedInput.value = seedVal;
+        // }
 
         const reader = new FileReader();
         reader.onload = (e) => {
